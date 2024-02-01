@@ -3,7 +3,7 @@ import { Code, CaretDoubleRight, TrashSimple } from 'phosphor-react'
 import * as Breadcrumbs from './Breadcrumbs'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Document } from '~/src/shared/types/ipc'
 
 interface HeaderProps {
@@ -37,6 +37,16 @@ export function Header({ isSideBarOpen }: HeaderProps) {
       },
     })
 
+  const { data } = useQuery({
+    queryKey: ['document', id],
+    queryFn: async () => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const response = await window.api.fetchDocument({ id: id! })
+      return response.data
+    },
+    enabled: !!id,
+  })
+
   return (
     <div
       id="header"
@@ -66,7 +76,9 @@ export function Header({ isSideBarOpen }: HeaderProps) {
               Document
             </Breadcrumbs.Item>
             <Breadcrumbs.Separator />
-            <Breadcrumbs.Item isActive>Untitled</Breadcrumbs.Item>
+            <Breadcrumbs.Item isActive>
+              {(data && data.title) ?? ''}
+            </Breadcrumbs.Item>
           </Breadcrumbs.Root>
 
           <div className="inline-flex region-no-drag">

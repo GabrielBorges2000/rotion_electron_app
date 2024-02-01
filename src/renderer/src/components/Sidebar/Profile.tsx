@@ -21,7 +21,7 @@ export function Profile() {
         src="https://avatars.githubusercontent.com/u/2254731?v=4"
         alt=""
       />
-      Diego Fernandes
+      Gabriel Borges
       <CaretDown className="w-4 h-4 text-rotion-100 group-hover:text-rotion-50" />
     </button>
   )

@@ -1,14 +1,15 @@
 import clsx from 'clsx'
-import { DotsThree } from 'phosphor-react'
-import { ReactNode } from 'react'
+import { PencilLine } from 'phosphor-react'
+import { AnchorHTMLAttributes, ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 
-interface LinkProps {
+interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode
   to: string
+  iconsRemove?: boolean
 }
 
-export function Link({ children, to }: LinkProps) {
+export function Link({ children, to, iconsRemove, ...rest }: LinkProps) {
   return (
     <NavLink
       to={to}
@@ -18,12 +19,13 @@ export function Link({ children, to }: LinkProps) {
           { 'bg-rotion-700': isActive },
         )
       }}
+      {...rest}
     >
       <span className="truncate flex-1">{children}</span>
 
       <div className="flex items-center h-full group-hover:visible ml-auto text-rotion-100">
         <button className="px-px rounded-sm hover:bg-rotion-500">
-          <DotsThree weight="bold" className="h-4 w-4" />
+          {!iconsRemove && <PencilLine weight="bold" className="h-4 w-4" />}
         </button>
       </div>
     </NavLink>

@@ -54,16 +54,21 @@ export function Sidebar() {
           <Navigation.Section>
             <Navigation.SectionTitle>Workspace</Navigation.SectionTitle>
             <Navigation.SectionContent>
-              {data?.map((document) => {
-                return (
-                  <Navigation.Link
-                    to={`/documents/${document.id}`}
-                    key={document.id}
-                  >
-                    {document.title}
-                  </Navigation.Link>
-                )
-              })}
+              <Navigation.Link to={`/`} key={'Home'}>
+                Home
+              </Navigation.Link>
+              <div className="scrollbar-thin max-h-96 scrollbar-thumb-rotion-800 overflow-y-scroll scrollbar-track-rotion-900">
+                {data?.map((document) => {
+                  return (
+                    <Navigation.Link
+                      to={`/documents/${document.id}`}
+                      key={document.id}
+                    >
+                      {document.title}
+                    </Navigation.Link>
+                  )
+                })}
+              </div>
             </Navigation.SectionContent>
           </Navigation.Section>
         </Navigation.Root>

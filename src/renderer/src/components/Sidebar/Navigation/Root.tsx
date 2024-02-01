@@ -1,6 +1,6 @@
-import { ReactNode } from 'react'
+import { AnchorHTMLAttributes, ReactNode } from 'react'
 
-interface RootProps {
+interface RootProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode
 }
 

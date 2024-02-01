@@ -1,7 +1,7 @@
-import { ReactNode } from 'react'
+import { AnchorHTMLAttributes, ReactNode } from 'react'
 import clsx from 'clsx'
 
-interface ItemProps {
+interface ItemProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   isActive?: boolean
   children: ReactNode
 }
@@ -11,7 +11,7 @@ export function Item({ isActive = false, children }: ItemProps) {
 
   return (
     <Comp
-      href="#"
+      href="/"
       className={clsx('inline-flex items-center gap-2 hover:text-rotion-50', {
         'text-rotion-50': isActive,
       })}

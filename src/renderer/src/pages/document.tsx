@@ -4,6 +4,7 @@ import { ToC } from '../components/ToC'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { Document as IPCDocumentInterface } from '@/shared/types/ipc'
+import { title } from 'process'
 
 export function Document() {
   const { id } = useParams<{ id: string }>()
@@ -47,6 +48,7 @@ export function Document() {
           })
         },
       )
+      await queryClient.setQueryData(['document', id], { ...data, title })
     },
   })
 
@@ -57,6 +59,31 @@ export function Document() {
     saveDocument({ title, content })
   }
 
+  // // Texto em Markdown
+  // const markdownText = `
+  // # Título 1
+  // ## Subtítulo 1.1
+  // ### Subtítulo 1.1.1
+  // ## Subtítulo 1.2
+  // # Título 2
+  // ## Subtítulo 2.1
+  // `
+
+  // // Regex para extrair títulos e subtítulos
+  // const regex = /(#{1,6})\s(.+)/g
+
+  // // Extrai títulos e subtítulos
+  // let match
+  // while ((match = regex.exec(markdownText)) !== null) {
+  //   const hashes = match[1]
+  //   const title = match[2]
+
+  //   // Determina o nível do título/subtítulo com base no número de hashes
+  //   const level = hashes.length
+
+  //   console.log(`Nível ${level}: ${title}`)
+  // }
+
   return (
     <main className="flex-1 flex py-12 px-10 gap-8 ">
       <aside className="hidden lg:block sticky top-0 ">
@@ -64,7 +91,7 @@ export function Document() {
           TABLE OF CONTENTS
         </span>
         <ToC.Root>
-          <ToC.Link>Back-End</ToC.Link>
+          <ToC.Link>{data && data.title}</ToC.Link>
           <ToC.Section>
             <ToC.Link>Banco de dados</ToC.Link>
             <ToC.Link>Autenticação</ToC.Link>
