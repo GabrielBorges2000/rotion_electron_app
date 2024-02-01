@@ -1,6 +1,6 @@
 # Rotion
 
-An Electron application with React and TypeScript
+Rotion is an application similar to Notion that was created using Electron with React and TypeScript.
 
 ## Recommended IDE Setup
 
@@ -32,3 +32,14 @@ $ pnpm build:mac
 # For Linux
 $ pnpm build:linux
 ```
+## Create New Release
+
+Create a new release by creating a tag using the semantic version:
+
+```bash
+$ git add .
+$ git commit -m 'your message commit'
+$ git tag v.1.0.0
+$ git push --tags
+```
+
