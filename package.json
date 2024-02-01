@@ -1,7 +1,7 @@
 {
   "name": "rotion",
   "productName": "Rotion",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Notion alternative written with Electron",
   "main": "./out/main/index.js",
   "author": "https://github.com/GabrielBorges2000",
@@ -61,4 +61,3 @@
     "vite-tsconfig-paths": "^4.2.3"
   }
 }
-
