@@ -5,7 +5,17 @@ import Typography from '@tiptap/extension-typography'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 
-export function Editor() {
+export interface OnContentUpdatedParams {
+  title: string
+  content: string
+}
+
+interface EditorProps {
+  content: string
+  onContentUpdated: (params: OnContentUpdatedParams) => void
+}
+
+export function Editor({ content, onContentUpdated }: EditorProps) {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -22,8 +32,19 @@ export function Editor() {
         content: 'heading block*',
       }),
     ],
-    content:
-      '<h1>Back-End</h1><p>Esse é um documento que explica o backend!</p>',
+    onUpdate: ({ editor }) => {
+      const contentRegex = /(<h1>(?<title>.+)<\/h1>(?<content>.+)?)/
+      const parsedContent = editor.getHTML().match(contentRegex)?.groups
+
+      const title = parsedContent?.title ?? 'Untitled'
+      const content = parsedContent?.content ?? ''
+
+      onContentUpdated({
+        title,
+        content,
+      })
+    },
+    content,
     autofocus: 'end',
     editorProps: {
       attributes: {

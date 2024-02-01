@@ -39,6 +39,8 @@ export const theme = {
 }
 export const plugins = [
   require('@tailwindcss/typography'),
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('tailwind-scrollbar'),
   plugin(({ addUtilities }) => {
     addUtilities({
       '.region-drag': {

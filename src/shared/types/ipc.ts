@@ -10,6 +10,8 @@ export interface Document {
 
 export type SaveDocumentRequest = Document
 
+export type OnNewDocumentRequest = () => void
+
 export interface FetchDocumentRequest {
   id: string
 }

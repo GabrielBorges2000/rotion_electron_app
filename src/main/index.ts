@@ -3,11 +3,13 @@ import path from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { createFileRoute, createURLRoute } from 'electron-router-dom'
 
-import icon from '../../resources/icon.png'
-// const icon = join(__dirname, '../../resources/icon.png?assets')
-
 import './ipc'
 import './store'
+import { createTray } from './tray'
+import { createShortcuts } from './shortcuts'
+
+// import icon from '../../resources/icon.png'
+const icon = path.join(__dirname, '../../resources/icon.png')
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -25,8 +27,13 @@ function createWindow(): void {
     webPreferences: {
       preload: path.join(__dirname, '../preload/index.js'),
       sandbox: false,
+      nodeIntegration: true,
+      contextIsolation: false,
     },
   })
+
+  createTray(mainWindow)
+  createShortcuts(mainWindow)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -44,7 +51,7 @@ function createWindow(): void {
   )
 
   const fileRoute = createFileRoute(
-    path.join(__dirname, '../render/index.html'),
+    path.join(__dirname, '../renderer/index.html'),
     'main',
   )
 
