@@ -15,7 +15,7 @@ export function Default() {
       className="h-screen w-screen bg-rotion-900 text-rotion-100 flex"
     >
       <Sidebar />
-      <div className="flex-1 flex flex-col max-h-screen">
+      <div className="flex-1 flex flex-col max-h-screen scrollbar-thin scrollbar-thumb-rotion-600 overflow-y-scroll scrollbar-track-rotion-800">
         <Header isSideBarOpen={isSideBarOpen} />
         <Outlet />
       </div>

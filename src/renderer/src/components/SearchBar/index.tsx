@@ -53,7 +53,7 @@ export function SearchBar({ open, onOpenChange }: SearchBarProps) {
         />
       </div>
       {/* ! Ajeiatar a scrollbar-thin */}
-      <Command.List className="py-2 max-h-48 scrollbar-thin scrollbar-thumb-rotion-600 overflow-y-scroll scrollbar-track-rotion-800">
+      <Command.List className="py-2 max-h-64 scrollbar-thin scrollbar-thumb-rotion-600 overflow-y-scroll scrollbar-track-rotion-800">
         <Command.Empty className="py-3 px-4 text-rotion-200 text-sm">
           Nenhum documento encontrado.
         </Command.Empty>

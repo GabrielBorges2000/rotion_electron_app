@@ -42,4 +42,3 @@ $ git commit -m 'your message commit'
 $ git tag v.1.0.0
 $ git push --tags
 ```
-

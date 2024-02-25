@@ -53,5 +53,5 @@ export function Editor({ content, onContentUpdated }: EditorProps) {
     },
   })
 
-  return <EditorContent className=" w-[65ch]" editor={editor} />
+  return <EditorContent className=" w-[80ch] min-h-16" editor={editor} />
 }

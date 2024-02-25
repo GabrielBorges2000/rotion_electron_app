@@ -51,7 +51,7 @@ export function Header({ isSideBarOpen }: HeaderProps) {
     <div
       id="header"
       className={clsx(
-        'border-b h-14 border-rotion-600 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250 region-drag',
+        'border-b h-14 border-rotion-600 py-[1.125rem] px-6 flex items-center gap-4 leading-tight transition-all duration-250 region-drag fixed top-0 z-10 bg-rotion-900',
         {
           'pl-24': !isSidebarOpen && isMacOS,
           'w-screen': !isSidebarOpen,
